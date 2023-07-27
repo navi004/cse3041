@@ -1,12 +1,19 @@
 #Factorial
 a = int(input("Enter the number : "))
-result  = 1 
-while(1):
-    result = a * result
-    a = a-1
-    if(a<=0):
-        print(result)
-        break
+result  = 1
+b = a
+if(a == 0):
+    print("Factorial of 0 is 1")
+elif(a<0):
+    print("Factorial doesnot exist for negative number")
+else:
+    while(1):
+        result = a * result
+        a = a-1
+        if(a<=0):
+            print("Factorial of ",b,"is",result)
+            break
+
 
 #With for loop
 num = int(input("Enter a number: "))
