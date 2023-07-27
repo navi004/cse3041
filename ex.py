@@ -51,8 +51,44 @@ max = a if(a>b) else b
 print(max)"""
 
 #Write a python code to check whether a given number of odd or even ?
+a = int(input("Enter  :"))
+if(a%2 == 0):
+        print("Even")
+else:
+    print("Odd")
+    
 #write a python  code to check whether a given year is leap year or not?
+year = int(input("Enter year : "))
+if(year%100==0 and year%400==0):
+    print("Leap Year")
+elif(year%4==0 and year%100==0):
+    print("Leap Year")
+else:
+    print("Non - Leap Year")
+    
 #to find the roots of a quadratic equation
+import math
+
+a = int(input("Enter A: "))
+b = int(input("Enter B: "))
+c = int(input("Enter C: "))
+
+print("Expression is", a, "x^2 +", b, "x +", c)
+
+# Calculate the discriminant (b^2 - 4ac)
+discriminant = b*b - 4*a*c
+
+# Check if the discriminant is non-negative (real roots exist)
+if discriminant >= 0:
+    # Calculate the two roots
+    root1 = (-b + math.sqrt(discriminant)) / (2*a)
+    root2 = (-b - math.sqrt(discriminant)) / (2*a)
+    print("Root 1:", root1)
+    print("Root 2:", root2)
+else:
+    print("No real roots exist for the given quadratic equation.")
+
+
 #write a program to segregate student based on cgpa .the details are as follows :
 """ <=9 cgpa <= 10 - outstanding
     <=8 cgpa < 9 - excellent
