@@ -8,3 +8,7 @@ for i in range(N):
 print(lst)
 
 
+print(lst[0],lst[N-1])
+
+print(lst[2:4])
+
