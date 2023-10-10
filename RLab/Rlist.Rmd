@@ -1,0 +1,64 @@
+
+```{r}
+#List
+```
+
+
+```{r}
+#list(arg1, arg2...)
+```
+```{r}
+
+#Creating a vectors 
+vect1 <- c(1,2,3)
+vect2 <- c(TRUE,FALSE)
+```
+```{r}
+#Creating a list of vectors 
+list1 = list(vect1,vect2)
+list1
+
+```
+
+```{r}
+#Printing the list
+print(list1)
+
+print(list1[[1]])
+print(list1[[1]][1])
+```
+
+```{r}
+#Defining a list of names 
+x <- list(mt = matrix(1:6, nrow = 2),lt = letters[1:8],n = c(1:10))
+print(x)
+
+```
+
+```{r}
+print(x$mt)
+```
+
+```{r}
+print(x$lt)
+```
+
+```{r}
+print(x$n[3])
+```
+
+
+```{r}
+#Create a list to maintain the details of a students such as registration number , name , no.of registered
+Std_details = list(id = '22MIA1049',name = "naveen", nc = 3, marks = c(28,35,42))
+Std_details
+```
+
+```{r}
+#RDisplay the mark of first subject of student 
+print(Std_details$marks[1])
+```
+```{r}
+print(Std_details$name)
+```
+
