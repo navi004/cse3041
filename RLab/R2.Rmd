@@ -1,0 +1,41 @@
+## 10 - 09 - 2023
+#Matrices - A matrix is a two dimensional rectangular data set . it can be created using a vector input to the matrix function 
+##Matrix Function 
+#R wants the data to be entered in columnwise 
+# 1st arg : c() the values of elements filling the columns 
+# 2nd arg : no of rows 
+# 3rd arg : no of columns 
+
+A = matrix(c(2,3,-2,1,2,2),3,2)
+A
+
+#     [,1] [,2]
+#[1,]    2    1
+#[2,]    3    2
+#[3,]   -2    2
+
+is.matrix(A)
+
+#[1] TRUE
+
+#Create a matrix 
+B = matrix(1:20,nrow= 4 ,ncol = 5)
+B
+
+#[,1] [,2] [,3] [,4] [,5]
+#[1,]    1    5    9   13   17
+#[2,]    2    6   10   14   18
+#[3,]    3    7   11   15   19
+#[4,]    4    8   12   16   20
+
+#Naming the rows and columns in a matrix
+Rownames = c("R1","R2","R3")
+Colnames  = c("C1","C2","C3")
+y = matrix(20:9, nrow = 3 ,ncol = 3, dimnames = list(Rownames, Colnames))
+y
+
+#   C1 C2 C3
+#R1 20 17 14
+#R2 19 16 13
+#R3 18 15 12
+
