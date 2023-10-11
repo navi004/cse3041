@@ -1,0 +1,41 @@
+#Represent the height in cm information of a team of 12 basketball players as a matrix of dimension 4 *3 in row major form 
+H = matrix(c(171,165,153,155,175,15,157,189,178,187,180,179),4,3,byrow = TRUE)
+H
+
+#Access the height at the row 3 and column 2
+H[3,2]
+
+#Display all the heights in row 2
+H[2,]
+
+#Display the heights in column 2
+H[,2]
+
+#Extract the heights in all rows but only column 1 and 3
+H[,c(1,3)]
+
+#Find the tranpose of the matrix
+T = t(H)
+T
+
+#Four more players got added to the team .te the matrix to reflect the heights of the players 
+N_4 = c(177,166,188,172)
+New_H = cbind(H,N_4)
+New_H
+
+# find the row wise sum and column wise sum
+R_sum  =rowsum(H,c(1:4))
+R_sum
+
+#Print the mean of the second row 
+M1 = mean(H[2,])
+print(M1)
+
+#Print the mean of the second column
+m2 = mean(H[,2])
+print(m2)
+
+# Print the trace 
+trace  = sum(diag(H))
+print(trace)
+
