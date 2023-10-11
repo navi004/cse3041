@@ -1,0 +1,135 @@
+```{r}
+#Data Frames 
+# Data frame is a table information like an Excel sheet
+#Contains rows  and columns containing different pieces 
+# contains different datatypes
+
+#Data Frame is created using data.frame() function
+df = data.frame(Id = c(1,2,3), Name = c("Ramu", "Raja", "Ravi"), Marks = c(50, 40 ,25))
+print(df)
+```
+```{r}
+df2 = data.frame(gender = c("M","M","F"), ht = c(172.0,186.5,165.0), wt = c(91, 99, 74))
+print(df2)
+```
+```{r}
+df2$ht
+```
+```{r}
+names(df2)
+```
+
+
+```{r}
+df2[2,3]
+```
+
+
+```{r}
+rownames(df2) <- c("S1","S2","S3") 
+df2
+```
+
+```{r}
+#Expanding the data frame
+df2$age <- c(28,55,43)
+df2
+```
+
+
+```{r}
+m2 <- data.frame(gender = c("M","F"), ht = c(170, 166), wt = c(68, 72), age = c(38, 22))
+rownames(m2) = c("S4", "S5")
+new_df2 <- rbind(df2, m2)
+new_df2
+
+# if other data is combined in the dataframe it can be combined using cbind
+```
+
+
+```{r}
+#Working on mtcars dataframe
+mtcars
+```
+
+```{r}
+df = data.frame(mtcars)
+df
+```
+```{r}
+#head of the df - displays the first 6 rows
+head(df)
+```
+```{r}
+#Dimension of df
+dim(df)
+```
+
+
+```{r}
+#Summary 
+summary(df)
+```
+
+```{r}
+#Subsetting in data frame
+#Subsetting using indexing 
+#retrieving subset of rows
+df[4:10,]
+```
+```{r}
+#Retieving the subset of columns
+df[, c(1,3)]
+```
+```{r}
+#retrieving the desired columns 
+df[,c(2,6)]
+```
+
+```{r}
+#Subsetting the columns using the column names 
+df[,c("mpg","cyl")]
+```
+```{r}
+#Displaying the df without the mentioned cols
+df[,c(-1,-3)]
+```
+
+```{r}
+#Using subset() fn to select the desired columns 
+subset1 <- subset(df, select = c(mpg, cyl))
+subset1
+```
+```{r}
+#subsetting rows with condition on a column
+subset2 <-subset(df, mpg>18)
+```
+```{r}
+#Subsetting rows that satisfies more than one condition on columns 
+subset3 <- subset(df, cyl > 5 & mpg > 16)
+subset3
+```
+
+```{r}
+# To exclude the columns mpg and cyl using the - sign
+subset4 <- subset(df, cyl > 5 & mpg > 16, select = c(-mpg, -cyl))
+subset4
+```
+
+```{r}
+#Find the avg number of cyl present in df
+avg_cyl = mean(df$cyl)
+avg_cyl
+```
+
+```{r}
+#Max mileage
+max_mileage = max(df$mpg)
+max_milcar = subset(df, mpg == max(df$mpg))
+max_milcar
+```
+
+```{r}
+
+```
+
