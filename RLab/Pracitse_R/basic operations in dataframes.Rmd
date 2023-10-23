@@ -1,0 +1,68 @@
+---
+title: "Basic Operations in DF"
+author: "N Naveen"
+date: "2023-10-23"
+output: pdf_document
+editor_options:
+  chunk_output_type: inline
+---
+
+# Basic operations in Data Frames
+# A college has conducted technical events for the students. It maintains the name of # the participant and the score obtained in different events.
+```{r  Question 1, echo=TRUE}
+# Create a data frame by considering 5 students and 4 events. Each event has a maximum score of 10. If a student participate in an event , its entry contains the score value and 0 otherwise.
+names_list  = c("Anu", "Swetha", "Ravi", "Raju", "Bharathi")
+df = data.frame(name = names_list,event1 = c(2,5,7,3,1), event2 = c(5,3,4,6,8),event3 = c(0,0,3,0,5), event4 = c(8,6,5,0,0) )
+print(df)
+```
+
+
+```{r  Question 2, echo=TRUE}
+# View the contents of the data frame
+View(df)
+```
+
+
+```{r  Question 3, echo=TRUE}
+#Extract the stud2 and stud3
+df[2:3,1:5]
+```
+
+
+```{r   Question 4, echo=TRUE}
+#Extract the scores of event 4
+df$event4
+```
+```{r Question 5, echo=TRUE}
+#Find the total score of each participant
+scores = rowSums(df[ ,2:5])
+print(scores)
+```
+```{r}
+#Append a column to include the total score of each participants and view the data #frame
+df$totalscore = rowSums(df[,2:5])
+print(df)
+```
+
+```{r}
+#Find the maximum score and display the name of the participant who scored it
+max_score = max(df$totalscore)
+p = df$name[df$totalscore == max_score]
+p
+```
+```{r}
+#Compute the average score of each events and append it as a new row in the #dataframe
+avg_Score = colMeans(df[,2:6])
+avg_df = data.frame( name = "avg_score",event1 = avg_Score[1], event2 = avg_Score[2], event3 = avg_Score[3], event4 = avg_Score[4], totalscore = avg_Score[5])
+df = rbind(df,avg_df)
+rownames(df)[nrow(df)] <- "6"
+print(df)
+
+```
+
+
+```{r}
+# Write the data frame to a CSV file
+write.csv(df, "student_scores.csv", row.names = FALSE)
+```
+
