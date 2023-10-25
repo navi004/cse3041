@@ -1,0 +1,57 @@
+```{r}
+library("dplyr")
+```
+
+```{r}
+#1. Display all the variables of data with some portion of the data for each variable
+#that can be fit on a single line. 
+data = mtcars
+glimpse(data)
+```
+```{r}
+#2. Display all the observations 
+show(data)
+```
+```{r}
+sample_n(data,5)
+```
+```{r}
+#Display only a fraction of observations randomly. 
+sample_frac(data,0.1)
+```
+```{r}
+#Display only the MPG column. 
+select(data, mpg)
+```
+```{r}
+#Display the variables that starts with the letter ‘d’ 
+select(data,starts_with("d"))
+```
+```{r}
+#Displays data in the columns from MPG to DISP without the CYL attribute. 
+select(data, mpg:disp,-cyl)
+```
+```{r}
+#Display all records whose HP values are more than 125 and MPG less than 15.0
+filter(data, hp > 125 & mpg < 15.0)
+```
+```{r}
+#Include a new attribute NV by adding WT and MPG together. 
+mutate(data, nv = wt + mpg)
+```
+```{r}
+#10. Display the maximum and minimum HP value
+summarise(data, max_hp= max(hp), min_hp= min(hp))
+```
+```{r}
+#Filter all the data with HP greater than 125 and arrange them in increasing order
+#of MPG.
+data %>% filter(hp>125) %>% arrange(mpg)
+```
+```{r}
+#12. Calculate the average WT for each unique value in the AM column for mtcar data
+#having HP > 125.
+data %>% filter(hp >125) %>% group_by(am) %>% summarise(avg_wt = mean(wt))
+```
+
+
