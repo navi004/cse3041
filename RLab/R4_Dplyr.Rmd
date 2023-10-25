@@ -1,0 +1,105 @@
+#Data 
+#Rows 
+# - filter()
+# - arrange()
+
+#Columns
+# - select()
+# - mutate()
+# - rename
+
+#group of rows
+# - summarise()
+
+#Pipe is used to connect combine more than one function
+# % > % f1 % > % f2
+
+#Install the packages dplyr
+
+```{r}
+install.packages("dplyr")
+
+```
+
+
+```{r}
+library("dplyr")
+```
+```{r}
+air_quality = airquality
+dim(air_quality)
+```
+```{r}
+str(air_quality)   #str returns structure of the dataframe
+```
+```{r}
+glimpse(air_quality)
+```
+```{r}
+mydata = air_quality
+
+```
+```{r}
+sample_n(mydata,3)
+```
+```{r}
+head(mydata)
+```
+```{r}
+sample_frac(mydata,0.1)
+```
+```{r}
+x1 = distinct(mydata)
+x1
+```
+```{r}
+#Select all the rows where temperature is more than 90 degree and month equal to 9
+filter(air_quality, Month == 9, Temp > 90)
+```
+```{r}
+arrange(air_quality,Day,desc(Month))
+```
+```{r}
+#mutate() function generally create add new variable that are function of existing variables
+mutate(air_quality,temp_celsius=(Temp - 32)*5/9)
+```
+
+```{r}
+select(air_quality, Ozone:Wind)
+```
+```{r}
+select(air_quality,-Solar.R)
+```
+```{r}
+select(air_quality,contains("o"))
+```
+```{r}
+select(air_quality,ends_with("e"))
+
+```
+```{r}
+select(air_quality, starts_with("M"))
+```
+```{r}
+select(air_quality,matches("o"))
+```
+```{r}
+#rename() syntax:
+rename(mydata, new_Solar.R = Solar.R)
+```
+```{r}
+summarise(air_quality, max_temp = max(Temp), min_temp = min(Temp))
+```
+```{r}
+summarise(air_quality, median_Oz = median(Ozone, na.rm = TRUE))
+```
+```{r}
+#compute mean temperature if month where month starts from May to August.
+air_quality %>% group_by(Month) %>% filter(Month > 4 & Month <= 8) %>% summarise(mean = mean(Temp, na.rm = TRUE))
+```
+
+```{r}
+
+```
+
+ 
