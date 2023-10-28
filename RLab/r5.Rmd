@@ -1,0 +1,173 @@
+---
+title: "Control Statements"
+author: "N Naveen"
+date: "2023-10-28"
+output: html_document
+---
+
+#Control statements in R
+#used to control the execution and flow of the program based on the condition
+#used to make decisions after assessing the variable 
+#- if condition
+# - else condition
+# - for loop 
+# - while loop
+# - repeat and break statement
+# - return statement
+# - next statement -> continue
+
+```{r}
+#for loop
+#for(value in vector)
+#{
+# statements......}
+
+for ( i in 1:4)
+{   print(i^2)}
+
+```
+```{r}
+x <- letters[4:10]
+for (i in x)
+{
+  print(i)
+}
+```
+
+```{r}
+#Input / Output
+#readline() - takes input in string format
+#Can convert inputted value using "as" keyword
+```
+```{r}
+#Syntax
+var1 = readline("Enter a number:");
+var1 = as.integer(var1)
+var1
+```
+```{r}
+cat(var1)
+message(var1)
+```
+
+```{r}
+#Print function in R
+#cat() - converts arguments to character strings
+#message() - 
+```
+```{r}
+#Write a program in R for fibonacci series upto n numbers
+n = readline("Enter the value of n :")
+n = as.integer(n)
+fibo = c(0,1)
+sum = 1
+for (i in 3:n)
+{
+  fibo[i] = fibo[i-1] + fibo[i-2]
+  sum = sum  + fibo[i]
+}
+cat("sum upto",n,"of fibonacci series is",sum)
+```
+```{r}
+#2.Print the number of vowels and consonants present in your name.
+x = readline("Enter your name:")
+summ = 0
+vowels = c("a","i","e","o","u")
+for (char in strsplit(x, "")[[1]])
+{
+  if (char %in% vowels)
+  {
+    summ = summ + 1
+  }
+}
+cons = nchar(x) - summ
+cat("No of vowels:",summ,"\n")
+
+cat("No of consonants:",cons)
+```
+```{r}
+#3. Given a number, write r script to print the pairwise factors of the given number.
+n = readline("Enter the number:")
+n = as.integer(n)
+for (i in 1:n)
+{
+  if(n%%i == 0)
+  {
+    cat(i,n/i,"\n")
+  }
+}
+```
+```{r}
+#4.Write a program to generate any 10 random numbers between 10 and 100 and then create
+#two vectors to store the odd and even numbers.
+even = c()
+odd = c()
+for (i in 1:10)
+{
+  x = sample(10:100,1)
+  if (x%%2 == 0)
+  {
+    even  = append(even,x)
+  }else
+  {
+    odd = append(odd,x)
+  }
+}
+cat("Even vector\n",even)
+cat("\nOdd vector\n",odd)
+```
+```{r}
+#5.Find the strength of the given password. The password is strong if it satisfies all the below
+#conditions. A moderate password is one that satisfies first three conditions and has length at
+#least 6, otherwise password is week.
+# It contains at least one lowercase English character.
+# It contains at least one uppercase English character.
+# It contains at least one special character. The special characters are: !@#$%^&*()-+
+# Its length is at least 8.
+# It contains at least one digit.
+x = readline("Enter the password:")
+chrr = strsplit(x,"")[[1]]
+
+c1  = FALSE
+c2 = FALSE
+c3 = FALSE
+c4 = FALSE
+c5 = FALSE
+
+sp = c("!","@","#","$","%","^","&","*","(",")","-","+")
+if(length(chrr) < 6){
+  cat("The password",x,"is weak")
+}
+for(i in chrr)
+{
+  if(i in 
+     
+  {
+    c1 = TRUE    
+  }
+  if(i in tolower(letters))
+  {
+    c2 = TRUE
+  }
+  if(i in sp)
+  {
+    c3 = TRUE
+  }
+  if(length(chrr) >= 8)
+  {
+    c4 = TRUE
+  }
+  if(i in c(0,1,2,3,4,5,6,7,8,9)){
+    c5 = TRUE
+  }
+}
+if(c1 == TRUE && c2 == TRUE && c3 == TRUE && c4 == TRUE && c5 == TRUE)
+{
+  cat("Password is strong")
+}
+if(c1 == TRUE && c2 == TRUE && c3 == TRUE && c4 == FALSE && c5 == FALSE){
+  cat("Password is moderate")
+}
+```
+
+
