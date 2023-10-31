@@ -1,0 +1,129 @@
+---
+title: "Measures of Dispersion"
+author: "Naveen N"
+date: "2023-10-31"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Basic Statistics
+Range - Max - Min
+Inter-Quartile : Q3 - Q1
+Outliers = Q1 - 1.5 * IQR or 
+         = Q3 + 1.5 * IQR
+
+# Box PLot - 
+*  used when describing center and variability of data
+*  useful for detecting outtliers
+
+# sd = sqrt(variance)
+# Coefficinet of Variance
+# CV = (sd/mean)*100
+# Skewness 
+* Postive
+* Negative
+# Formula :-
+#(Mean - Mode)/sd
+# 3 * (Median - Mode)/sd
+
+# Skewness == 0 - symmetrice
+# Skewness
+*  -0.5 to 0.5 : Approximately Symmetric
+* -1 to 1      : Moderately  Skewed
+* >1 or <-1    : Highly Skewed
+
+# Kurtosis
+* Lepto  >3
+* Meso   =3
+* Platy  <3
+
+# A scatterplot is useful for eyeballing the presence of outliers
+
+# Covariance and Correlation
+
+
+if cov > 0 -> Directly Proportional(Positively Correlated)
+if cov < 0 -> Inversely Proportional(Negatively Correlated)
+if cov == 0 -> Uncorrelated
+
+#Correlation Matrix
+A correlation matrix is essentially a table depicting the correlation coefficients for various variables. The rows and columns contains the value of the variables and each cell shows the correlation coefficient
+
+
+```{r}
+rm(list = ls())
+```
+```{r}
+library(MASS)
+```
+```{r}
+newg = na.omit(geyser)
+View(newg)
+```
+```{r}
+newf= na.omit(faithful)
+View(newf)
+```
+
+#Mean
+```{r}
+duration = newf$eruptions
+round(mean(duration),2)
+```
+#Median
+```{r}
+Q2 = median(newf$eruptions)
+Q2
+```
+
+#Quantile
+```{r}
+quantile(duration)
+```
+```{r}
+quantile(duration,c(0.75,.80))
+```
+#Range
+```{r}
+quantile(duration,.100) - quantile(duration,0.0)
+```
+#IQR
+```{r}
+Q3 = quantile(duration,0.75)
+Q1 = quantile(duration,0.25)
+IQR = Q3 - Q1 
+IQR
+
+```
+#Variance
+```{r}
+var(duration)
+```
+#Central Moments
+```{r}
+library(e1071)
+```
+#Order 3
+```{r}
+moment(duration,order = 3,center = TRUE)
+```
+
+#Skewness
+```{r}
+skewness(duration)
+```
+
+#Kurtosis
+```{r}
+kurtosis(duration)
+```
+
+#Correlation and Covariance
+```{r}
+cor(duration,newf$waiting)
+cov(duration, newf$waiting)
+```
+
