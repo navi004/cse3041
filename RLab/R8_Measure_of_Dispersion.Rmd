@@ -29,7 +29,7 @@ Outliers = Q1 - 1.5 * IQR or
 #(Mean - Mode)/sd
 # 3 * (Median - Mode)/sd
 
-# Skewness == 0 - symmetrice
+# Skewness == 0 - symmetric
 # Skewness
 *  -0.5 to 0.5 : Approximately Symmetric
 * -1 to 1      : Moderately  Skewed
@@ -71,36 +71,40 @@ View(newf)
 #Mean
 ```{r}
 duration = newf$eruptions
-round(mean(duration),2)
+cat("Mean of the eruptions is ",round(mean(duration),2))
+
 ```
 #Median
 ```{r}
 Q2 = median(newf$eruptions)
 Q2
+cat("Median of the eruptions is ",Q2)
 ```
 
 #Quantile
 ```{r}
-quantile(duration)
+cat("The Quantiles of the duration\n",quantile(duration))
 ```
 ```{r}
-quantile(duration,c(0.75,.80))
+cat("The Quantiles of the duration of 75% and 80% are \n",quantile(duration,c(0.75,.80)))
 ```
 #Range
 ```{r}
-quantile(duration,.100) - quantile(duration,0.0)
+cat("The Range of Duration is ",quantile(duration,1) - quantile(duration,0.0))
 ```
 #IQR
 ```{r}
 Q3 = quantile(duration,0.75)
 Q1 = quantile(duration,0.25)
 IQR = Q3 - Q1 
-IQR
+IQR1 = IQR(duration)
+IQR1
+cat("The IQR of duration is",IQR)
 
 ```
 #Variance
 ```{r}
-var(duration)
+cat("The variance of the duration is ",var(duration))
 ```
 #Central Moments
 ```{r}
@@ -108,22 +112,64 @@ library(e1071)
 ```
 #Order 3
 ```{r}
-moment(duration,order = 3,center = TRUE)
+x = moment(duration,order = 3,center = TRUE)
+x
+cat("The central moments of duration of order 3 is ",x)
 ```
 
 #Skewness
 ```{r}
-skewness(duration)
+sk = skewness(duration)
+sk 
+if (sk >= -0.5 && sk <= 0.5) {
+  cat("The skewness of duration is Approximately Symmetric")
+}else if((sk > -1.0 && sk < -0.5) && (sk > 0.5 && sk < 1.0)) {
+  cat("The skewness of the duration is Moderately Skewed")
+}else{
+  cat("The Skewness of the duration is Highly Skewed")
+}
 ```
 
 #Kurtosis
 ```{r}
-kurtosis(duration)
+k = kurtosis(duration)
+k
+if(k == 3) {
+  cat("The Kurtosis of the duration is Meso")
+}else if(k < 3){
+  cat("The Skewness of the duration is Platy")
+}else if(k > 3){
+  cat("The Kurtosis of the duration is Lepto")
+}
 ```
 
 #Correlation and Covariance
 ```{r}
-cor(duration,newf$waiting)
-cov(duration, newf$waiting)
+core = cor(duration,newf$waiting)
+cat("The Correlation of Duration and Wainting is",core,"\n")
+if(core <= 1 && core >= -1){
+  if(core == -1 || core == 1){
+    cat("Duration and Wainting are Perfectly Correlated\n")
+  }
+  if(core > 0){
+    cat("Duration and Waiting are Positively Correlated")
+  }else if(core < 0){
+    cat("Duration and Waiting are Negatively Correlated")
+  }
+}else {
+  cat("Duration and Waiting are Uncorrelated")
+}
+
+
+```
+```{r}
+cova = cov(duration, newf$waiting)
+cat("The covariance of duration and waiting is",cova,"\n")
+
+if(cova > 0){
+  cat("Duration and Waiting has Positive Covariance")
+}else if(cova < 0){
+  cat("Duration and Waiting has Negative Covariance")
+}
 ```
 
