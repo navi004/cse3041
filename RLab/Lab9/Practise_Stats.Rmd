@@ -1,0 +1,123 @@
+---
+title: "Measures of Dispersion"
+author: "N Naveen"
+date: "2023-11-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library("dplyr")
+```
+
+```{r}
+library("MASS")
+```
+```{r}
+newsurvey = na.omit(survey)
+sample_n(newsurvey,5)
+```
+
+```{r,1}
+#Find the average age of the students participated in the survey.
+avg_stud = round(mean(newsurvey$Age),2)
+avg_stud
+```
+```{r,2}
+#Compute the standard deviation and variance of the height of the students participated in the surve
+sd = sd(newsurvey$Height)
+var = var(newsurvey$Height)
+sd
+var
+```
+```{r,3}
+# Compute the quartile of write hand span.
+Q = quantile(newsurvey$Wr.Hnd)
+Q
+```
+```{r,4}
+#Find the correlation between write hand span and pulse rate of the students
+corr = cor(newsurvey$Wr.Hnd,newsurvey$Pulse)
+
+if(corr == -1 || corr == 1){
+  cat("Write Hand Span and Pulse are Perfectly Correlated and Correlation = ",corr)
+}else if(corr == 0){
+  cat("Write Hand Span and Pulse are Perfectly UnCorrelated and Correlation = ",corr)
+}else if(corr > 0){
+  cat("Write Hand Span and Pulse are Postively Correlated(Directly Proportional) and Correlation = ",corr)
+}else if(corr < 0){
+  cat("Write Hand Span and Pulse are Negatively Correlated(Inversely) and Correlation = ",corr)
+}
+```
+```{r,5}
+#Find the average age of the students based on how often the student exercises.
+newsurvey %>% group_by(newsurvey$Exer) %>% summarise(avg_Age = mean(Age))
+
+```
+
+```{r,6}
+#Find the standard deviation of height of the students under different categories of span of non-writing hand.
+newsurvey %>% group_by(newsurvey$NW.Hnd) %>% summarise(sd(Height))
+```
+
+```{r,7}
+#Obtain the summary statistics of pulse rate of the students.
+summary(newsurvey$Pulse)
+
+```
+```{r,8}
+Q1 = quantile(newsurvey$Height,0.25)
+Q2 = quantile(newsurvey$Height,0.50)
+Q3 = quantile(newsurvey$Height,0.75)
+IQR = IQR(newsurvey$Height)
+IQR
+Range = max(newsurvey$Height) - min(newsurvey$Height)
+Range
+
+Q11 = Q1 - 1.5 * IQR
+Q44 = Q3 + 1.5 * IQR
+Outliers = filter(newsurvey,newsurvey$Height > Q44 || newsurvey$Height < Q11)
+Outliers
+```
+
+```{r}
+library("e1071")
+```
+
+
+```{r,9}
+#Find the skewness of pulse. 
+sk = skewness(newsurvey$Height)
+if(sk == 0) {
+  cat("Pulse is Perfectly Symmetric and skewness = ",sk)
+}else if(-0.5<sk && sk < 0.5){
+  cat("Pulse is Approximately Symmetric and skewness = ",sk)
+}else if(-1.0 < sk && sk < 1.0){
+  cat("Pulse is Moderately Skewed and skewness = ",sk)
+}else{
+  cat("Pulse is Highly Skewed and skewness = ",sk)
+}
+
+if(sk > 0){
+  cat("\nPulse is Positively(RIGHT) Skewed")
+}else if(sk < 0){
+   cat("\nPulse is Negatively(LEFT) Skewed")
+}
+```
+
+```{r,10}
+# Find the kurtosis of height. 
+k = kurtosis(newsurvey$Height)
+if(k == 3){
+  cat("Meso kurtic and kurtosis = ",k)
+}else if(k > 3){
+  cat("Lepto kurtic and kurtosis = ",k)
+}else if(k < 3){
+  cat("Platy kurtic and kurtosis = ",k)
+}
+
+
+```
+
