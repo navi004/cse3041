@@ -24,8 +24,10 @@ New_H = cbind(H,N_4)
 New_H
 
 # find the row wise sum and column wise sum
-R_sum  =rowsum(H,c(1:4))
+R_sum  =rowSums(H)
 R_sum
+C_sum = colSums(H)
+C_sum
 
 #Print the mean of the second row 
 M1 = mean(H[2,])
