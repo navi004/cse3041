@@ -1,0 +1,146 @@
+---
+title: "Practise_CAT2"
+author: "N Naveen"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+rm(list = ls())
+```
+
+
+```{r}
+grep("A",c("a","A","d"))
+```
+
+
+```{r}
+paste("a",1:3,sep="")
+```
+
+
+```{r}
+sub(" ",".","Hello There")
+```
+
+
+```{r}
+substr("abcd",2,4)
+```
+
+```{r}
+x <- vector("numeric", length = 10)
+x
+```
+```{r}
+v <- c(2,4,6,345,7,23,634)
+sort(v)
+sort(v, decreasing = TRUE)
+```
+
+```{r}
+rep(v[1:2],times = 2)
+rep(v[1:2],each = 2)
+```
+
+```{r}
+rnames = paste("x",1:3,sep = "")
+cnames = paste("y",1:2,sep = "")
+M <-  matrix(c('a','a','b','c','b','a'), 3,2,byrow = TRUE,dimnames = list(rnames,cnames))
+M
+```
+
+```{r}
+#Matrix multplication
+A <- matrix(c(2,3,4,5,6,1),3,4)
+A
+B <- matrix(c(3,4,6,2,5,6),4,3)
+B
+A %*% B
+```
+```{r}
+t(A)
+```
+
+```{r}
+I <- diag(c(1,1,1))
+I
+```
+```{r}
+rowSums(A)
+colSums(A)
+colMeans(A)
+colnames(A)
+```
+
+```{r}
+A
+rowsum(A,c(1:3))
+```
+```{r}
+lt <- list(a = 1,let = letters[1:8],mt = matrix(1:6, nrow = 2))
+lt
+lt <- within(lt, rm(a))
+lt
+```
+```{r}
+mats = paste("Matrix",1:2,sep = "")
+a <- array(c("Greeen","Yellow","Red"), dim = c(3,2,2),dimnames = list(rnames,cnames,mats))
+a
+```
+```{r}
+#Used for array or matrix
+apply(lt$mt,2,mean)
+```
+```{r}
+vector1 <- c(5,9,3)
+vector2 <- c(10,11,12,13,14,15)
+```
+
+
+```{r}
+arr <- array(c(vector1,vector2),dim = c(3,2,2),dimnames =list(rnames,cnames,mats))
+arr
+```
+
+```{r}
+
+apply(arr[,,1],c(1),sum)
+apply(arr,c(1),sum)
+apply(arr,c(1,2),sum)
+```
+
+```{r}
+df = data.frame(gender = c("M","M","F"),ht = c(172,166,170),wt = c(50,68,70),age = c(23,21,19))
+df
+```
+
+```{r}
+str(df)
+class(df)
+typeof(df)
+```
+```{r}
+install.packages("dplyr")
+```
+```{r}
+library("dplyr")
+```
+```{r}
+sample_n(df,3)
+tail(df,2)
+```
+
+```{r}
+df[order(df$ht),]
+```
+
+```{r}
+glimpse(airquality)
+sample_frac(airquality,0.1)
+```
+
