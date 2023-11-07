@@ -1,0 +1,94 @@
+---
+title: "Visualization_P.Rmd"
+author: "N Naveen"
+date: "2023-11-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("MASS")
+```
+
+```{r}
+newsurvey = na.omit(survey)
+View(newsurvey)
+```
+```{r}
+library(ggplot2)
+```
+
+
+##1. Plot a bar graph for the number of male and female participants in the survey. Provide
+the title as “Male and Female participants”, y-axis label as “frequency” and specify
+the colours for the bars.
+```{r}
+freq = table(newsurvey$Sex)
+barplot(freq, main = "Male and Female Participants", ylab = "Frequecy", col = c("red","blue"))
+```
+## 2.Plot a bar graph for the number of left handers and right handers in the survey.
+Provide the title as “Left Handers and Right Handers”, y-axis label as “count” and
+specify the colours for the bars.
+```{r}
+count = table(newsurvey$W.Hnd)
+barplot(count,main = "Left Handeres and Right Handers", ylab = "Count",col = c("red","blue"))
+```
+## 3.Plot the distribution between male left handers and female left handers using bar
+chart. Provide the title as “Female Left Handers and Male Left Handers , y-axis label
+as “count” and specify the colours for the bars.
+```{r}
+library(dplyr)
+```
+
+```{r}
+d1 = newsurvey %>% filter(W.Hnd == "Left") 
+count = table(d1$Sex)
+barplot(count,main = "Female and Male Left Handers",ylab = "Count" ,col = c("red","blue"))
+```
+## 4.Draw the histogram of age distribution with the title as „Age distribution‟ and xlabel
+as „Age range‟ and ylabel as „frequency‟.
+```{r}
+freq = table(newsurvey$Age)
+hist(freq, main = "Age Distribution", xlab = "Age Range", ylab = "Frequency", col = c("blue", "green"))
+```
+## 5.Reveal the relationship between the age and writing hand span using scatter plot.
+```{r}
+plot(newsurvey$Age, newsurvey$Wr.Hnd)
+```
+
+## 6.Draw the boxplot for pulse rate to analyse the five summary statistics. Provide
+appropriate title and label. 
+
+```{r}
+
+boxplot(newsurvey$Pulse, main = "Pulse Rate Statistics",ylab = "Pulse Rate",col = "red")
+summary(newsurvey$Pulse)
+```
+## 7.Draw the distribution of smoking habits of male left handers using pie chart.
+```{r}
+M_L = d1 %>% filter(Sex == "Male")
+count = table(M_L$Smoke)
+pie(count, main = "Male Left Hand Smokers")
+```
+```{r}
+file1 <- read.csv("/home/ex5/Desktop/22mia1049/Sample Datasets-20230926/iris.csv")
+data1 = na.omit(file1)
+data1
+```
+## Correalation Analysis
+```{r}
+plot(file1,main = "Iris Dataset")
+```
+## Outliers
+```{r}
+boxplot(data1[,2:6], "Outliers")
+```
+## Plot the frequency table
+```{r}
+freq = table(data1$species)
+plot(freq,main = "Frequency")
+```
+

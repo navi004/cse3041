@@ -1,0 +1,118 @@
+---
+title: "Visualization"
+author: "N Naveen"
+date: "2023-11-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Visualization  
+* Base Graphics
+* grid Graphics
+* lattice Graphics
+* ggplot Graphics
+
+
+```{r}
+library("MASS")
+```
+
+```{r}
+data = na.omit(airquality)
+View(data)
+```
+
+
+### Plotting Ozone using plot       
+```{r}
+plot(data$Ozone)
+```
+## Scatter Plot       
+```{r}
+plot(data$Ozone, data$Wind)
+```
+## Plot Freq        
+```{r}
+freq = table(data$Month)
+plot(freq)
+```
+## When the scatter plot is used with entire dataset, a matrix of scatterplots is obtained which is a correlation matrix of all the columns       
+```{r}
+plot(data)
+```
+
+## Bar plot       
+```{r}
+barplot(data$Ozone, main = "Ozone levels")
+```
+
+## Hist       
+```{r}
+hist(data$Solar.R)
+```
+## Box plot       
+```{r}
+boxplot(data$Ozone)
+```
+## Multiple box plot        
+```{r}
+boxplot(data[,1:4],main = "Multiple Box plot")
+```
+## ggplot  - grammer of graphics        
+
+```{r}
+library(ggplot2)
+```
+
+## ggplot components        
+* Data : data
+* Aesthetics : mapping x and y
+* Geometrics : what type of graph
+* Facets
+
+```{r}
+ggplot(data = mtcars,aes(x = wt,y = mpg))+geom_point() 
+```
+## Geometrics       
+* Scatter- geom_point
+* Bar-  geom_bar
+* Hist - geom_histogram
+* Line chart - geom_line
+* geom_polygon
+
+### Scatter plot        
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length)) +geom_point() 
+```
+### ggplot - scatter plot       
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length,col = Species, shape = Species))+ geom_point()
+```
+### ggplot - scatter plot       
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) + geom_point() + geom_smooth()
+```
+### ggplot - scatter        
+```{r}
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, col = Species)) + geom_point(color = "blue") + geom_smooth(color = "red")
+```
+### ggplot - bar        
+```{r}
+ggplot(mtcars,aes(x = gear)) + geom_bar()
+```
+### ggplot - Histogram        
+```{r}
+ggplot(mtcars, aes(x = mpg)) + geom_histogram()
+```
+### Box plot        
+```{r}
+ggplot(mtcars, aes(x = as.factor(cyl), y= mpg))  + geom_boxplot()
+```
+#
+```{r}
+
+```
+
