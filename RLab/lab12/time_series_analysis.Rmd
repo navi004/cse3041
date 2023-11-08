@@ -1,0 +1,56 @@
+---
+title: "Time Series Analysis"
+author: "N Naveen"
+date: "2023-11-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Time series data
+* experimental data that have been observed at different points on time
+
+### Examples
+* daily stock market quotations
+* monthly unemployment figures
+* No of covid - 19 cases over period of time
+* BP over a period of time
+
+## Components
+* Long term Movement or Trend
+* Short term Movements
+  * Seasonal Variations
+  * Cyclic Variations
+* Random or irregular Movements
+
+## Stationary Series 
+
+
+### Autoregression
+  * y = b0 + b1 * X1
+* By using this we can predict the values for the next time step(t+1) 
+
+## Moving Average
+
+### ARMA (Auto Regresssion Moving Average)
+* Integration of Autoregression and Moving average
+
+### ARIMA (Auto Regression Integrated Moving Average)
+
+
+## TIME SERIES ANALYSIS
+* ts()
+* used to show how objects behave over a period of time
+
+```{r}
+install.packages("forecast")
+```
+```{r}
+library(forecast)
+```
+
+```{r}
+
+```
+
